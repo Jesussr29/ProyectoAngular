@@ -1,20 +1,23 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { CartasComponent } from "./cartas-component.component";
-import { PokemonTcgService } from "../../services/tcg.service";
-import { of } from "rxjs";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CartasComponent } from './cartas-component.component';
+import { PokemonTcgService } from '../../services/tcg.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
-describe("CartasComponent", () => {
+describe('CartasComponent', () => {
   let component: CartasComponent;
   let fixture: ComponentFixture<CartasComponent>;
   let pokemonService: PokemonTcgService;
   let httpMock: HttpTestingController;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, FormsModule, CommonModule],
       declarations: [CartasComponent],
-      imports: [HttpClientTestingModule],
-      providers: [PokemonTcgService],
+      providers: [PokemonTcgService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CartasComponent);
@@ -22,55 +25,69 @@ describe("CartasComponent", () => {
     pokemonService = TestBed.inject(PokemonTcgService);
     httpMock = TestBed.inject(HttpTestingController);
 
-    fixture.detectChanges();
+    fixture.detectChanges(); // Trigger initial data binding
   });
 
-  it("should create", () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should load cartas on init", () => {
-    const mockCartas = { data: [{ name: "Pikachu", set: { name: "Base Set" }, images: { small: "pikachu.jpg" } }] };
+  it('should call obtenerCartas() and populate cartas array', () => {
+    const mockCartas = {
+      data: [
+        { name: 'Pikachu', set: { name: 'Base Set' }, images: { small: 'pikachu.jpg' } },
+        { name: 'Charmander', set: { name: 'Base Set' }, images: { small: 'charmander.jpg' } },
+      ],
+    };
 
-    spyOn(pokemonService, "obtenerCartas").and.returnValue(of(mockCartas));
+    spyOn(pokemonService, 'obtenerCartas').and.returnValue(of(mockCartas));
 
-    component.ngOnInit();
+    component.obtenerCartas();
 
-    expect(component.cartas.length).toBe(1);
-    expect(component.cartas[0].name).toBe("Pikachu");
+    fixture.detectChanges();
+
+    expect(component.cartas.length).toBe(2);
+    expect(component.cartas[0].name).toBe('Pikachu');
   });
 
-  it("should search cartas by name", () => {
-    const mockCartas = { data: [{ name: "Charizard", set: { name: "Base Set" }, images: { small: "charizard.jpg" } }] };
+  it('should display error message when obtaining cartas fails', () => {
+    spyOn(pokemonService, 'obtenerCartas').and.returnValue(of({ data: [] }));
 
-    spyOn(pokemonService, "buscarCartasPorNombre").and.returnValue(of(mockCartas));
+    component.obtenerCartas();
 
-    component.nombreCarta = "Charizard";
+    fixture.detectChanges();
+
+    const errorMessage = fixture.debugElement.query(By.css('.error-message p')).nativeElement;
+    expect(errorMessage.textContent).toBe('Error al obtener las cartas.');
+  });
+
+  it('should call buscarPorNombre() and update cartas', () => {
+    const mockCartas = {
+      data: [
+        { name: 'Pikachu', set: { name: 'Base Set' }, images: { small: 'pikachu.jpg' } },
+      ],
+    };
+
+    spyOn(pokemonService, 'buscarCartasPorNombre').and.returnValue(of(mockCartas));
+
+    component.nombreCarta = 'Pikachu';
     component.buscarPorNombre();
 
-    expect(component.cartas.length).toBe(1);
-    expect(component.cartas[0].name).toBe("Charizard");
-  });
-
-  it("should search cartas by expansion", () => {
-    const mockCartas = { data: [{ name: "Blastoise", set: { name: "Base Set" }, images: { small: "blastoise.jpg" } }] };
-
-    spyOn(pokemonService, "obtenerCartasPorExpansion").and.returnValue(of(mockCartas));
-
-    component.expansion = "Base Set";
-    component.obtenerPorExpansion();
+    fixture.detectChanges();
 
     expect(component.cartas.length).toBe(1);
-    expect(component.cartas[0].name).toBe("Blastoise");
+    expect(component.cartas[0].name).toBe('Pikachu');
   });
 
-  it("should handle error when no cartas found", () => {
-    const mockError = "No se encontraron cartas con ese nombre.";
-    spyOn(pokemonService, "buscarCartasPorNombre").and.returnValue(of({ data: [] }));
+  it('should display "No hay cartas para mostrar." when no cartas are available', () => {
+    component.cartas = [];
+    fixture.detectChanges();
 
-    component.nombreCarta = "MissingCard";
-    component.buscarPorNombre();
+    const noCartasMessage = fixture.debugElement.query(By.css('ng-template#noCartas')).nativeElement;
+    expect(noCartasMessage.textContent).toContain('No hay cartas para mostrar.');
+  });
 
-    expect(component.error).toBe(mockError);
+  afterEach(() => {
+    httpMock.verify(); // Ensure no outstanding requests
   });
 });

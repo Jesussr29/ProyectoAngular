@@ -1,5 +1,3 @@
 main{
-    background-image: url("https://images.steamusercontent.com/ugc/1862800643587205256/4C9556F0E634AF7F82C97E197674ECA5D87AE634/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true");
-    background-size: cover;
-    background-position: center;
+    background-color: gray;
 }

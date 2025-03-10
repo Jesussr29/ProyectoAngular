@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { PokemonTcgService } from '../../services/tcg.service';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Importa CommonModule aquí
 
 @Component({
   selector: 'app-cartas',
-  standalone: true,
-  imports: [FormsModule, CommonModule], // Importa CommonModule aquí también
+  standalone: true, // Marca el componente como standalone
+  imports: [CommonModule, FormsModule], // Importa CommonModule y FormsModule
   templateUrl: './cartas-component.component.html',
   styleUrls: ['./cartas-component.component.css']
 })
@@ -24,38 +24,24 @@ export class CartasComponent {
 
   obtenerCartas(): void {
     this.pokemonService.obtenerCartas().subscribe(
-      (data) => {
-        this.cartas = data.data;
-      },
-      (error) => {
-        this.error = 'Error al obtener las cartas.';
-      }
+      (data) => this.cartas = data.data,
+      () => this.error = 'Error al obtener las cartas.'
     );
   }
 
   buscarPorNombre(): void {
-    if (this.nombreCarta.trim()) {
-      this.pokemonService.buscarCartasPorNombre(this.nombreCarta).subscribe(
-        (data) => {
-          this.cartas = data.data;
-        },
-        (error) => {
-          this.error = 'No se encontraron cartas con ese nombre.';
-        }
-      );
-    }
+    if (!this.nombreCarta.trim()) return;
+    this.pokemonService.buscarCartasPorNombre(this.nombreCarta).subscribe(
+      (data) => this.cartas = data.data,
+      () => this.error = 'No se encontraron cartas con ese nombre.'
+    );
   }
 
   obtenerPorExpansion(): void {
-    if (this.expansion.trim()) {
-      this.pokemonService.obtenerCartasPorExpansion(this.expansion).subscribe(
-        (data) => {
-          this.cartas = data.data;
-        },
-        (error) => {
-          this.error = 'No se encontraron cartas para esa expansión.';
-        }
-      );
-    }
+    if (!this.expansion.trim()) return;
+    this.pokemonService.obtenerCartasPorExpansion(this.expansion).subscribe(
+      (data) => this.cartas = data.data,
+      () => this.error = 'No se encontraron cartas para esa expansión.'
+    );
   }
 }

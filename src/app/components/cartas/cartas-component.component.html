@@ -3,21 +3,13 @@
 
   <div class="search-options">
     <div>
-      <input
-        type="text"
-        [(ngModel)]="nombreCarta"
-        placeholder="Buscar por nombre"
-      />
-      <button (click)="buscarPorNombre()">Buscar</button>
+      <input type="text" [(ngModel)]="nombreCarta" placeholder="Buscar por nombre" />
+      <button (click)="buscarPorNombre()" [disabled]="!nombreCarta.trim()">Buscar</button>
     </div>
 
     <div>
-      <input
-        type="text"
-        [(ngModel)]="expansion"
-        placeholder="Buscar por expansión"
-      />
-      <button (click)="obtenerPorExpansion()">Buscar</button>
+      <input type="text" [(ngModel)]="expansion" placeholder="Buscar por expansión" />
+      <button (click)="obtenerPorExpansion()" [disabled]="!expansion.trim()">Buscar</button>
     </div>
   </div>
 
@@ -25,11 +17,15 @@
     <p>{{ error }}</p>
   </div>
 
-  <div class="cartas-list">
+  <div class="cartas-list" *ngIf="cartas?.length; else noCartas">
     <div *ngFor="let carta of cartas" class="carta">
-      <img [src]="carta.images.small" alt="{{ carta.name }}" />
+      <img [src]="carta.images?.small" alt="{{ carta.name }}" />
       <p>{{ carta.name }}</p>
-      <p>Expansión: {{ carta.set.name }}</p>
+      <p>Expansión: {{ carta.set?.name }}</p>
     </div>
   </div>
+
+  <ng-template #noCartas>
+    <p>No hay cartas para mostrar.</p>
+  </ng-template>
 </div>
