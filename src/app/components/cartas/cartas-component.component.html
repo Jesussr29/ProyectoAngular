@@ -1,0 +1,36 @@
+<div class="cartas-container">
+    <h1>Cartas Pokémon TCG</h1>
+  
+    <div class="search-options">
+      <div>
+        <input
+          type="text"
+          [(ngModel)]="nombreCarta"
+          placeholder="Buscar por nombre"
+        />
+        <button (click)="buscarPorNombre()">Buscar</button>
+      </div>
+  
+      <div>
+        <input
+          type="text"
+          [(ngModel)]="expansion"
+          placeholder="Buscar por expansión"
+        />
+        <button (click)="obtenerPorExpansion()">Buscar</button>
+      </div>
+    </div>
+  
+    <div *ngIf="error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
+  
+    <div class="cartas-list">
+      <div *ngFor="let carta of cartas" class="carta">
+        <img [src]="carta.images.small" alt="{{ carta.name }}" />
+        <p>{{ carta.name }}</p>
+        <p>Expansión: {{ carta.set.name }}</p>
+      </div>
+    </div>
+  </div>
+  
