@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { PokemonTcgService } from '../../services/tcg.service';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Importa CommonModule aquí
 
 @Component({
   selector: 'app-cartas',
   standalone: true,
-  imports: [FormsModule], // Importa FormsModule aquí también
+  imports: [FormsModule, CommonModule], // Importa CommonModule aquí también
   templateUrl: './cartas-component.component.html',
   styleUrls: ['./cartas-component.component.css']
 })

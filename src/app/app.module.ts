@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CartasComponent } from './components/cartas/cartas-component.component'; // Aquí importamos el componente standalone
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './components/home/home.component';
+import { CartasComponent } from './components/cartas/cartas-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     FormsModule,
-    CartasComponent // Aquí importamos el componente standalone
+    CommonModule,
+    CartasComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
