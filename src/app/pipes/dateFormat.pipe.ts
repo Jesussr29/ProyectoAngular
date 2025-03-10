@@ -10,10 +10,15 @@ export class DateFormatPipe implements PipeTransform {
   transform(value: string | Date | null | undefined, format: string = "d 'de' MMMM 'de' y"): string {
     if (!value) return "Fecha Inválida";
 
-    // Reemplaza las barras por guiones para que DatePipe lo interprete correctamente
-    const formattedValue = typeof value === "string" ? value.replace(/\//g, "-") : value;
+    // Si es un string, lo transformamos a Date
+    const dateValue = typeof value === "string" ? new Date(value.replace(/\//g, "-")) : value;
 
-    const transformedDate = this.datePipe.transform(formattedValue, format);
+    // Si no es una fecha válida, devolvemos "Fecha Inválida"
+    if (!(dateValue instanceof Date) || isNaN(dateValue.getTime())) {
+      return "Fecha Inválida";
+    }
+
+    const transformedDate = this.datePipe.transform(dateValue, format);
     return transformedDate ?? "Fecha Inválida";
   }
 }

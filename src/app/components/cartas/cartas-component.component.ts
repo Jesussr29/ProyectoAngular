@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { PokemonTcgService } from '../../services/tcg.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DateFormatPipe } from '../../pipes/dateFormat.pipe';
 
 @Component({
   selector: 'app-cartas',
   standalone: true, // Marca el componente como standalone
-  imports: [CommonModule, FormsModule], // Importa CommonModule y FormsModule
+  imports: [CommonModule, FormsModule, DateFormatPipe], // Importa CommonModule y FormsModule
   templateUrl: './cartas-component.component.html',
   styleUrls: ['./cartas-component.component.css']
 })

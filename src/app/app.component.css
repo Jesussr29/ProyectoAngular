@@ -1,3 +1,18 @@
+header{
+    background-image: url('../img/header.gif');
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+}
+
+header img
+{
+    width: 100%;
+    height: 100%;
+}
+
 main{
-    background-color: gray;
+    background: url('https://res.cloudinary.com/dbw3utkij/image/upload/v1741640719/jcbh5bqloff45qazanhq.gif') no-repeat center center fixed;
+    background-size: cover;
+    width: 100%;
 }

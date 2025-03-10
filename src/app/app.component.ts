@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ProyectoAngular';
+  title = 'TRADING CARD LOS MOLARES';
   email='jesus.rincon-albarran@iesruizgijon.com';
 }
