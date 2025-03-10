@@ -8,6 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { PokemonTcgService } from './services/tcg.service';
 import { HomeComponent } from './components/home/home.component';
 import { CartasComponent } from './components/cartas/cartas-component.component';
+import { registerLocaleData } from "@angular/common";
+import localeEs from "@angular/common/locales/es";
+import { DateFormatPipe } from './pipes/dateFormat.pipe';
+
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -22,7 +27,9 @@ import { CartasComponent } from './components/cartas/cartas-component.component'
     HttpClientModule,
     CartasComponent
   ],
-  providers: [PokemonTcgService],
+  providers: [PokemonTcgService, DateFormatPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
