@@ -17,6 +17,10 @@ export class CartasComponent {
   expansion: string = '';
   error: string = '';
 
+  // Variables para paginación
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+
   constructor(private pokemonService: PokemonTcgService) {}
 
   ngOnInit(): void {
@@ -44,5 +48,32 @@ export class CartasComponent {
       (data) => this.cartas = data.data,
       () => this.error = 'No se encontraron cartas para esa expansión.'
     );
+  }
+
+  // Obtener las cartas para la página actual
+  getPaginatedCartas() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+
+    return this.cartas.slice(start, end);
+  }
+
+  // Número total de páginas
+  totalPages() {
+    return Math.ceil(this.cartas.length / this.itemsPerPage);
+  }
+
+  // Ir a la página anterior
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  // Ir a la página siguiente
+  nextPage() {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+    }
   }
 }
