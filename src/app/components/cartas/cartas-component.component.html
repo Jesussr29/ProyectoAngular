@@ -6,32 +6,20 @@
       <input
         type="text"
         [(ngModel)]="nombreCarta"
+        (ngModelChange)="buscarCartas()"
         class="form-control"
         placeholder="Buscar por nombre"
       />
-      <button
-        (click)="buscarPorNombre()"
-        [disabled]="!nombreCarta.trim()"
-        class="btn btn-primary mt-2 w-100"
-      >
-        Buscar
-      </button>
     </div>
 
     <div class="col-md-5 mb-3">
       <input
         type="text"
         [(ngModel)]="expansion"
+        (ngModelChange)="buscarCartas()"
         class="form-control"
         placeholder="Buscar por expansión"
       />
-      <button
-        (click)="obtenerPorExpansion()"
-        [disabled]="!expansion.trim()"
-        class="btn btn-primary mt-2 w-100"
-      >
-        Buscar
-      </button>
     </div>
   </div>
 
@@ -39,26 +27,18 @@
     <p>{{ error }}</p>
   </div>
 
-    <!-- Paginación -->
-    <div class="d-flex justify-content-center mt-4">
-      <button
-        (click)="previousPage()"
-        [disabled]="currentPage === 1"
-        class="btn btn-dark mx-2"
-      >
+  <!-- Paginación -->
+  <div class="d-flex justify-content-center mt-4">
+    <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-dark mx-2">
       <i class="bi bi-arrow-left"></i>
-      </button>
-      <button
-        (click)="nextPage()"
-        [disabled]="currentPage === totalPages()"
-        class="btn btn-dark mx-2"
-      >
+    </button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages()" class="btn btn-dark mx-2">
       <i class="bi bi-arrow-right"></i>
-      </button>
-    </div><br>
+    </button>
+  </div><br>
 
   <!-- Cartas con paginación -->
-  <div class="cartas-list row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3" *ngIf="cartas?.length; else noCartas">
+  <div class="cartas-list row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3" *ngIf="getPaginatedCartas()?.length; else noCartas">
     <div *ngFor="let carta of getPaginatedCartas()" class="col">
       <div class="card h-100">
         <img
