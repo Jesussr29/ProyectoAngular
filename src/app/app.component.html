@@ -15,27 +15,30 @@
   </header>  
 
   <!-- Barra de navegación -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img style="width: 70px;" src="https://res.cloudinary.com/dbw3utkij/image/upload/v1741639651/o9zec56uix1d8x9czye4.png" alt=""></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/cartas">Cartas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/acerca">Acerca de</a>
-          </li>
-        </ul>
-      </div>
+<!-- Barra de navegación temática de Pokémon -->
+<nav class="navbar navbar-expand-lg" style="background-color: #FFCC00; border-bottom: 5px solid #CC0000;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img style="width: 70px;" src="https://res.cloudinary.com/dbw3utkij/image/upload/v1741639651/o9zec56uix1d8x9czye4.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" style="color: #333; font-weight: bold;" aria-current="page" routerLink="/home">🏠 Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: #333; font-weight: bold;" routerLink="/cartas">🃏 Cartas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: #333; font-weight: bold;" routerLink="/acerca">ℹ️ Acerca de</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
   <main class="flex-grow-1">
     <router-outlet></router-outlet>

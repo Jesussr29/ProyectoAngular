@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+    background-color: #FFCC00;
+    font-family: Arial, sans-serif;
+}
+.container {
+    margin-top: 50px;
+}
+h1 {
+    font-size: 50px;
+    color: #CC0000;
+}
+p {
+    font-size: 20px;
+}
+.pokeball {
+    width: 150px;
+}
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #CC0000;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.btn:hover {
+    background-color: #990000;
+}
