@@ -1,0 +1,10 @@
+.animacion {
+    animation: flotante 3s ease-in-out infinite;
+  }
+  
+  @keyframes flotante {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+  

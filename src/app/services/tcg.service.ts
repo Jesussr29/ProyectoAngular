@@ -11,7 +11,7 @@ export class PokemonTcgService {
   constructor(private http: HttpClient) {}
 
   obtenerCartas(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?pageSize=24`);
+    return this.http.get<any>(`${this.apiUrl}?pageSize=100`);
   }
 
   buscarCartas(nombre: string, expansion: string): Observable<any> {
