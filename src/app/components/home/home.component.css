@@ -40,4 +40,12 @@ p.lead {
 .titulo{
     max-width: 1000px;
 }
+
+@media screen and (max-width: 768px) {
+    
+    .titulo{
+        max-width: 450px;
+        width: 100%;
+    }
+}
   

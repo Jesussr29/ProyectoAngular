@@ -45,7 +45,7 @@ export class CartasComponent {
 
     this.pokemonService.buscarCartas(this.nombreCarta, this.expansion).subscribe(
       (data) => {
-        this.cartas = data.data?.length ? data.data : this.cartas; // Si no hay resultados, mantén las cartas actuales
+        this.cartas = data.data?.length ? data.data : this.cartas; // Si no hay resultados, mantiene las cartas actuales
         this.currentPage = 1; // Reset paginación
       },
       () => this.error = 'No se encontraron cartas con esos filtros.'

@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'acerca', component: AcercaComponent },
   { path: 'cartas', component: CartasComponent },
   { path: 'error', component: Error404Component },
-  { path: '**', redirectTo: '/error' } // Si la ruta no existe, redirige a Home
+  { path: '**', redirectTo: '/error' } 
 ];
 
 @NgModule({
