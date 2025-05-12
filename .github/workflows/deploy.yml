@@ -1,4 +1,4 @@
-name: Deploy EVAGYM to External Repo
+name: Deploy MTCG to External Repo
 
 on:
   push:
