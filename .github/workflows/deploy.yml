@@ -1,0 +1,44 @@
+name: Deploy EVAGYM to External Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: npm run build -- --base-href=https://jesussr29.github.io/jesus/mtcg/ 
+
+      - name: Clone external repo
+        run: |
+          git clone https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/Jesussr29/jesus.git external-repo
+
+      - name: Copy build output to external repo
+        run: |
+          rm -rf external-repo/mtcg
+          mkdir -p external-repo/mtcg
+          cp -r dist/ProyectoAngular/browser/* external-repo/mtcg/
+
+      - name: Commit and push changes
+        run: |
+          cd external-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "MTCG DESPLEGADO" || echo "No changes to commit"
+          git push
