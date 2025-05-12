@@ -1,59 +1,28 @@
-# PruebaRuting
+# 🃏 Molares Trading Card Game
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+**Molares Trading Card Game** es una plataforma web desarrollada en [Angular](https://angular.io/) que permite explorar cartas de Pokémon, visualizar sus precios actualizados y consultar las expansiones a las que pertenecen. Toda la información es consumida a través de APIs desarrolladas en **PHP**.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🌐 Tecnologías utilizadas
 
-```bash
-ng serve
-```
+- **Frontend:** Angular
+- **Backend:** PHP (API REST)
+- **Estilos:** HTML, CSS y Bootstrap
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🔧 Instalación
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Requisitos previos
 
-```bash
-ng generate component component-name
-```
+- Node.js y npm
+- Angular CLI (`npm install -g @angular/cli`)
+- Servidor local con PHP (XAMPP, Laragon, etc.)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Pasos
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Jesussr29/ProyectoAngular.git
+   cd ProyectoAngular
